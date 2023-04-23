@@ -1,14 +1,16 @@
-import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import routes from 'routes';
 import StrongAutoLayout from 'components/layout/StrongAutoLayout';
-
-const router = createBrowserRouter(routes);
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import routes from 'routes';
 
 const StrongAutoApp: React.FC = () => {
   return (
     <StrongAutoLayout>
-      <RouterProvider router={router} />
+      <Routes>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Routes>
     </StrongAutoLayout>
   );
 };

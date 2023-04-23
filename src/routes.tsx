@@ -1,16 +1,23 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
+import { Autoshop, Home } from 'pages';
 import { RouteObject } from 'react-router-dom';
-import Home from './pages//home/Home';
 
 type CustomRouteObject = RouteObject & {
-  path: '/';
+  path: '/' | '/favorites' | '/autoshop';
 };
 
 const routes: CustomRouteObject[] = [
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/favorites',
+    element: <Home />,
+  },
+  {
+    path: '/autoshop',
+    element: <Autoshop />,
   },
 ];
 
