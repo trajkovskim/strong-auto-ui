@@ -1,21 +1,15 @@
 import { FacebookFilled, InstagramOutlined } from '@ant-design/icons';
 import { Divider, Input, Select, Typography } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
-import Space from 'components/layout/Space';
+import { StyledContainer } from 'components/layout';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import theme from 'theme';
 
 const { Title, Text, Link: AntdLink } = Typography;
 
 const StyledFooter = styled.footer`
   background-color: #333333;
-  padding: ${theme.globalPadding.lg};
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const StyledText = styled(Text)`
@@ -46,10 +40,10 @@ const Footer: React.FC = () => {
 
   return (
     <StyledFooter>
-      <Space direction="vertical">
-        <Space align="stretch" size={50}>
-          <Space direction="vertical">
-            <Space direction="vertical" size={0}>
+      <StyledContainer direction="column" align="center" padding="md">
+        <StyledContainer align="stretch" spacing={50}>
+          <StyledContainer direction="column">
+            <StyledContainer direction="column" spacing={0}>
               <Link to="/">
                 <AntdLink>Strong auto logo</AntdLink>
               </Link>
@@ -59,30 +53,30 @@ const Footer: React.FC = () => {
               <Link to="/rent">
                 <AntdLink>Rent a car</AntdLink>
               </Link>
-            </Space>
+            </StyledContainer>
             <div>
               <StyledText>Strumuca, 1000</StyledText>
               <StyledText>North Macedonia</StyledText>
               <StyledText>+398 71 123 123</StyledText>
             </div>
-          </Space>
+          </StyledContainer>
           <StyledDivider type="vertical" />
           <div>
             <StyledTitle level={5}>Social networks</StyledTitle>
-            <Space direction="vertical">
+            <StyledContainer direction="column">
               <StyledLink href={facebookLink}>
-                <Space>
+                <StyledContainer>
                   <FacebookFilled style={{ fontSize: '24px' }} />
                   Facebook
-                </Space>
+                </StyledContainer>
               </StyledLink>
               <StyledLink href={instagramLink}>
-                <Space>
+                <StyledContainer>
                   <InstagramOutlined style={{ fontSize: '24px' }} />
                   Instagram
-                </Space>
+                </StyledContainer>
               </StyledLink>
-            </Space>
+            </StyledContainer>
           </div>
           <StyledDivider type="vertical" />
           <div>
@@ -101,18 +95,18 @@ const Footer: React.FC = () => {
               will use it only to send you our newsletter or respond to your query.
             </StyledText>
           </div>
-        </Space>
-        <Space justify="space-between">
-          <div>
-            <StyledText>Disclaimer</StyledText>
-            <StyledText>@ 2023 strongauto.com</StyledText>
-          </div>
-          <Space>
-            <StyledText>Language:</StyledText>
-            <Select defaultValue="en" options={languageOptions} />
-          </Space>
-        </Space>
-      </Space>
+        </StyledContainer>
+      </StyledContainer>
+      <StyledContainer justify="space-between" padding="xs">
+        <div>
+          <StyledText>Disclaimer</StyledText>
+          <StyledText>@ 2023 strongauto.com</StyledText>
+        </div>
+        <StyledContainer>
+          <StyledText>Language:</StyledText>
+          <Select defaultValue="en" options={languageOptions} />
+        </StyledContainer>
+      </StyledContainer>
     </StyledFooter>
   );
 };

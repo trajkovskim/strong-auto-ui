@@ -1,6 +1,8 @@
-import { Card, Divider, Image, List, Typography } from 'antd';
-import { Col, Row, Space } from 'components/layout';
+import { css } from '@emotion/css';
+import { Card, Image, List, Typography } from 'antd';
+import { StyledContainer } from 'components/layout';
 import React from 'react';
+import styled from 'styled-components';
 
 const { Title, Text } = Typography;
 
@@ -12,37 +14,43 @@ type Item = {
 type Props = {
   items: Item[];
   loading?: boolean;
+  className?: string;
 };
 
+const StyledDiv = styled.div`
+  background-color: gainsboro;
+  padding: 1rem;
+`;
+
 const VehicleMakeContainer: React.FC<Props> = (props) => {
+  const className = css`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  `;
+
   return (
-    <Row>
-      <Col centered>
-        <Title level={3}>Vehicles make</Title>
-      </Col>
-      <Col span={24}>
-        <Divider />
-      </Col>
-      <Col span={24}>
-        <List
-          grid={{ gutter: 16, column: 3, xs: 1 }}
-          dataSource={props.items}
-          loading={props.loading}
-          renderItem={(item, index) => {
-            return (
-              <List.Item>
-                <Card key={index} hoverable title={false}>
-                  <Space direction="vertical" centered align="center">
-                    <Image src={item.image} preview={false} width={120} height={120} />
-                    <Text type="secondary">{item.content}</Text>
-                  </Space>
-                </Card>
-              </List.Item>
-            );
-          }}
-        />
-      </Col>
-    </Row>
+    <StyledDiv>
+      <List
+        className={`${className} ${props.className}`}
+        grid={{ gutter: 16, column: 5, xs: 1 }}
+        dataSource={props.items}
+        loading={props.loading}
+        header={<Title level={3}>Vehicles make</Title>}
+        renderItem={(item, index) => {
+          return (
+            <List.Item>
+              <Card key={index} hoverable title={false}>
+                <StyledContainer direction="column" centered align="center">
+                  <Image src={item.image} preview={false} width={120} height={120} />
+                  <Text type="secondary">{item.content}</Text>
+                </StyledContainer>
+              </Card>
+            </List.Item>
+          );
+        }}
+      />
+    </StyledDiv>
   );
 };
 

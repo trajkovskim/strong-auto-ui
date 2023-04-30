@@ -1,6 +1,6 @@
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { Card as AntdCard, Button, Carousel, Image } from 'antd';
-import { Col, Row } from 'components/layout';
+import { StyledContainer } from 'components/layout';
 import React, { ReactNode, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -79,14 +79,12 @@ const Card: React.FC<Props> = (props) => {
     <StyledCard loading={props.loading} hoverable cover={cover}>
       {props.favorite && !props.favorite?.value && <StyledHeartOutlined onClick={handleFavoriteClick} />}
       {props.favorite && props.favorite?.value && <StyledHeartFilled onClick={handleFavoriteClick} />}
-      <Row justify="end" gutter={[12, 12]}>
-        <Col span={24}>
-          <AntdCard.Meta title={props.title} description={props.description} />
-        </Col>
-        <Col>
+      <StyledContainer direction="column" spacing={10}>
+        <AntdCard.Meta title={props.title} description={props.description} />
+        <StyledContainer justify="flex-end">
           <Button type="primary">View</Button>
-        </Col>
-      </Row>
+        </StyledContainer>
+      </StyledContainer>
     </StyledCard>
   );
 };

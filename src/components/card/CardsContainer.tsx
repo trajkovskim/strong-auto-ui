@@ -1,21 +1,35 @@
 import React from 'react';
 import Card, { Props as CardProps } from 'components/card/Card';
-import { Col, Row } from 'components/layout';
-import { List, Typography } from 'antd';
+import { Button, List, Typography } from 'antd';
+import styled from 'styled-components';
 const { Title } = Typography;
+
+const StyledButton = styled(Button)`
+  border-top: 1px solid gainsboro;
+  border-radius: 0;
+`;
 
 export type Props = {
   title?: string;
   cards: CardProps[];
   loading?: boolean;
+  onLoadMore?: () => void;
 };
 
-const CardsContainer: React.FC<Props> = (props) => {
-  const list = (
+const CardsContainer: React.FC<Props> = ({ onLoadMore, ...props }) => {
+  return (
     <List
       loading={props.loading}
       grid={{ gutter: 16, column: 4, xs: 1, sm: 2, md: 3, lg: 3 }}
       dataSource={props.cards}
+      header={props.title && <Title level={3}>{props.title}</Title>}
+      loadMore={
+        onLoadMore && (
+          <StyledButton block type="text" onClick={onLoadMore}>
+            Load more
+          </StyledButton>
+        )
+      }
       renderItem={(card, index) => {
         return (
           <List.Item>
@@ -24,17 +38,6 @@ const CardsContainer: React.FC<Props> = (props) => {
         );
       }}
     />
-  );
-
-  if (!props.title) {
-    return list;
-  }
-
-  return (
-    <Row gutter={[0, 10]}>
-      <Col span={24}>{props.title && <Title level={3}>{props.title}</Title>}</Col>
-      <Col span={24}>{list}</Col>
-    </Row>
   );
 };
 

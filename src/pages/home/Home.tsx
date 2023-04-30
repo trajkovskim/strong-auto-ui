@@ -1,9 +1,8 @@
 import { CardProps, CardsContainer } from 'components/card';
+import { StyledCol, StyledRow } from 'components/layout';
+import ClassificationContainer from 'pages/home/ClassificationContainer';
 import LeftCard from 'pages/home/LeftCard';
 import RightCard from 'pages/home/RightCard';
-import Col from 'components/layout/Col';
-import Row from 'components/layout/Row';
-import ClassificationContainer from 'pages/home/ClassificationContainer';
 import TopContainer from 'pages/home/TopContainer';
 import VehicleMakeContainer from 'pages/home/VechileMakeContainer';
 import React, { useState } from 'react';
@@ -44,19 +43,14 @@ const Home: React.FC = () => {
       description: 'Good condition',
       image: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg',
     },
-    {
-      title: 'Audi RS7',
-      description: 'Good condition',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg',
-    },
   ];
 
   return (
-    <Row>
-      <Col span={24}>
+    <StyledRow spacing={0}>
+      <StyledCol span={24}>
         <TopContainer />
-      </Col>
-      <Col span={24} centered>
+      </StyledCol>
+      <StyledCol span={24} centered>
         <div style={{ position: 'relative', height: '40em' }}>
           <LeftCard
             title="Autoshop"
@@ -73,8 +67,8 @@ const Home: React.FC = () => {
             }}
           />
         </div>
-      </Col>
-      <Col span={24} xl={16} padding="xs" centered>
+      </StyledCol>
+      <StyledCol span={24}>
         <ClassificationContainer
           items={[
             { title: 'City vehicles', description: 'description' },
@@ -83,8 +77,8 @@ const Home: React.FC = () => {
             { title: 'Family vehicles', description: 'description' },
           ]}
         />
-      </Col>
-      <Col span={24} xl={16} padding="xs" centered>
+      </StyledCol>
+      <StyledCol span={24}>
         <VehicleMakeContainer
           items={[
             {
@@ -113,16 +107,16 @@ const Home: React.FC = () => {
             },
           ]}
         />
-      </Col>
-      <Col span={24} xl={16} centered padding="xs">
-        <CardsContainer cards={newVehiclesCards} title="New vehicles" />
-      </Col>
-      <Col span={24} xl={16} centered padding="xs">
+      </StyledCol>
+      <StyledCol span={24} xl={16} centered padding="xs">
+        <CardsContainer cards={newVehiclesCards} onLoadMore={() => console.log()} title="New vehicles" />
+      </StyledCol>
+      <StyledCol span={24} xl={16} centered padding="xs">
         <CardsContainer cards={newVehiclesCards} title="Mostly viewed" />
-      </Col>
-      <Col span={24} xl={16} centered padding="xs">
+      </StyledCol>
+      <StyledCol span={24} xl={16} centered padding="xs">
         <CardsContainer cards={newVehiclesCards} title="Rent vehicles" />
-      </Col>
+      </StyledCol>
       {/* <Col span={6} padding="md">
         <Col span={24}>
           <List title="Recent activities" items={activities} />
@@ -131,7 +125,7 @@ const Home: React.FC = () => {
           <List title="Reviews" items={reviews} />
         </Col>
       </Col> */}
-    </Row>
+    </StyledRow>
   );
 };
 

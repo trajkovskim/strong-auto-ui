@@ -1,6 +1,6 @@
 import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Image, Typography } from 'antd';
-import Space from 'components/layout/Space';
+import { StyledContainer } from 'components/layout';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -30,6 +30,7 @@ const StyledLink = styled(AntdLink)`
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <StyledHeader>
@@ -38,14 +39,14 @@ const Header: React.FC = () => {
         </Link>
       </StyledHeader>
       <StyledNav>
-        <Space>
+        <StyledContainer>
           <StyledLink onClick={() => navigate('/autoshop')}>Autoshop</StyledLink>
           <StyledLink onClick={() => navigate('/rent')}>Rent</StyledLink>
-        </Space>
-        <Space size={25}>
+        </StyledContainer>
+        <StyledContainer spacing={25}>
           <HeartOutlined style={{ fontSize: '20px' }} />
           <ShoppingCartOutlined style={{ fontSize: '20px' }} />
-        </Space>
+        </StyledContainer>
       </StyledNav>
     </>
   );
